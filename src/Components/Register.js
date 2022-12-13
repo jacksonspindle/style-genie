@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { attemptLogin } from "../store/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { registerUser } from "../store";
 
-const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const Register = () => {
+  const dispatch = useDispatch;
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -15,15 +14,14 @@ const Login = () => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
   };
 
-  const login = (ev) => {
-    console.log(credentials);
+  const _register = (ev) => {
     ev.preventDefault();
-    dispatch(attemptLogin(credentials, navigate));
+    dispatch(registerUser(credentials));
   };
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={login}>
+      <h1>Register</h1>
+      <form onSubmit={_register}>
         <input
           placeholder="username"
           name="username"
@@ -36,13 +34,13 @@ const Login = () => {
           //   value={credentials.password}
           onChange={onChange}
         ></input>
-        <button>Login</button>
+        <button>Register</button>
       </form>
       <h3>
-        Don't have an account? <Link to="/register">Register Here</Link>
+        Already have an account? <Link to="/login">Login Here</Link>
       </h3>
     </div>
   );
 };
 
-export default Login;
+export default Register;

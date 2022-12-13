@@ -7,6 +7,11 @@ const auth = (state = {}, action) => {
   return state;
 };
 
+export const logout = () => {
+  window.localStorage.removeItem("token");
+  return { type: "SET_AUTH", auth: {} };
+};
+
 export const loginWithToken = () => {
   console.log("test");
   return async (dispatch) => {
@@ -28,11 +33,20 @@ export const loginWithToken = () => {
   };
 };
 
-export const attemptLogin = (credentials) => {
+export const attemptLogin = (credentials, navigate) => {
   return async (dispatch) => {
     const response = await axios.post("/api/auth", credentials);
     window.localStorage.setItem("token", response.data);
     // console.log(response);
+    dispatch(loginWithToken());
+    navigate("/");
+  };
+};
+
+export const registerUser = (credentials) => {
+  return async (dispatch) => {
+    const response = axios.post("/api/auth/register", credentials);
+    window.localStorage.setItem("token", response.data);
     dispatch(loginWithToken());
   };
 };
