@@ -4,6 +4,9 @@ import Login from "./Login";
 import { loginWithToken } from "../store";
 import Home from "./Home";
 import { Link, Routes, Route } from "react-router-dom";
+import Register from "./Register";
+import Profile from "./Profile";
+import Nav from "./Nav";
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -21,28 +24,18 @@ const App = () => {
   console.log(auth.id);
   return (
     <div>
-      <h1>APP</h1>
-      {auth.id ? (
-        <Home />
-      ) : (
-        <div>
-          <Login />
-        </div>
-      )}
-      {!!auth.id && (
-        <div>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/cart">Cart</Link>
-            <Link to="/profile">Profile</Link>
-          </nav>
+      <div>
+        <Nav />
 
-          <Routes>
-            {/* <Route path="/cart" element={<Cart />} /> */}
-            {/* <Route path="/profile" element={<Profile />} /> */}
-          </Routes>
-        </div>
-      )}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Home />} />
+          <Route path="/register" element={<Home />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
+      {/* )} */}
     </div>
   );
 };

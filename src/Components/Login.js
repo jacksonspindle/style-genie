@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { attemptLogin } from "../store/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -16,7 +18,7 @@ const Login = () => {
   const login = (ev) => {
     console.log(credentials);
     ev.preventDefault();
-    dispatch(attemptLogin(credentials));
+    dispatch(attemptLogin(credentials, navigate));
   };
   return (
     <div>
@@ -36,6 +38,9 @@ const Login = () => {
         ></input>
         <button>Login</button>
       </form>
+      <h3>
+        Don't have an account? <Link to="/register">Register Here</Link>
+      </h3>
     </div>
   );
 };

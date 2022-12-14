@@ -24,6 +24,14 @@ const User = conn.define("user", {
       notEmpty: true,
     },
   },
+  firstName: {
+    type: STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: STRING,
+    allowNull: false,
+  },
   isAdmin: {
     type: BOOLEAN,
     allowNull: false,
@@ -52,11 +60,10 @@ User.addHook("beforeSave", async (user) => {
 });
 
 User.findByToken = async function (token) {
+  console.log(token);
   try {
-    console.log(process.env.JWT);
     const { id } = jwt.verify(token, process.env.JWT);
     const user = await this.findByPk(id);
-    console.log(user);
     if (user) {
       return user;
     }
