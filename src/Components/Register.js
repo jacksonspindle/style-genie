@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../store";
@@ -15,6 +15,23 @@ const Register = () => {
     lastName: "",
   });
 
+  const [file, setFile] = useState(null);
+  const [avatar, setAvatar] = useState("");
+
+  useEffect(() => {
+    if (file) {
+      file.addEventListener("change", (ev) => {
+        const fileData = ev.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(fileData);
+        reader.addEventListener("load", () => {
+          setAvatar(reader.result);
+        });
+        console.log(avatar);
+      });
+    }
+  }, [file]);
+
   const onChange = (ev) => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
   };
@@ -22,14 +39,17 @@ const Register = () => {
   const registerUser = async (ev) => {
     ev.preventDefault();
     try {
-      await dispatch(register(credentials, navigate));
+      await dispatch(register({ ...credentials, avatar }, navigate));
       setCredentials({
         email: "",
         username: "",
         password: "",
         firstName: "",
         lastName: "",
+        avatar: "",
       });
+      setAvatar("");
+      setFile(null);
     } catch (ex) {
       console.log(ex);
     }
@@ -58,8 +78,14 @@ const Register = () => {
         <div>
           <span>
             <label htmlFor="avatar">Choose a profile picture</label>
-            <input type="file" name="avatar" accept="image/*"></input>
+            <input
+              type="file"
+              name="avatar"
+              accept="image/*"
+              ref={(x) => setFile(x)}
+            ></input>
           </span>
+          {avatar ? <img src={avatar} /> : <div></div>}
         </div>
         <button>Sign up</button>
       </form>

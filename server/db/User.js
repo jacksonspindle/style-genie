@@ -45,7 +45,7 @@ const User = conn.define("user", {
       if (!data) {
         return data;
       }
-      if (data.startsWith(prefix)) {
+      if (data.startsWith("data:image/")) {
         return data;
       }
       return `${prefix}${data}`;
