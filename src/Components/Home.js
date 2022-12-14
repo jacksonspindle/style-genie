@@ -18,6 +18,7 @@ const Home = () => {
       ) : (
         <div>
           <Link to="/register">Start Here</Link>
+          Welcome {auth.username}!
         </div>
       )}
     </div>
