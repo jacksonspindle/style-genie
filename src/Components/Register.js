@@ -13,24 +13,26 @@ const Register = () => {
     password: "",
     firstName: "",
     lastName: "",
-    avatar: "",
   });
 
   const onChange = (ev) => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
   };
 
-  const registerUser = (ev) => {
+  const registerUser = async (ev) => {
     ev.preventDefault();
-    dispatch(register(credentials, navigate));
-    setCredentials({
-      email: "",
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      avatar: "",
-    });
+    try {
+      await dispatch(register(credentials, navigate));
+      setCredentials({
+        email: "",
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+      });
+    } catch (ex) {
+      console.log(ex);
+    }
   };
   return (
     <div>

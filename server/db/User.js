@@ -24,6 +24,14 @@ const User = conn.define("user", {
       notEmpty: true,
     },
   },
+  firstName: {
+    type: STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: STRING,
+    allowNull: false,
+  },
   isAdmin: {
     type: BOOLEAN,
     allowNull: false,

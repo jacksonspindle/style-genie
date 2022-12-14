@@ -40,7 +40,7 @@ export const register = (credentials, navigate) => {
     const response = axios.post("/api/auth/register", credentials);
     window.localStorage.setItem("token", response.data);
     dispatch(loginWithToken());
-    navigate("/");
+    navigate("/login");
   };
 };
 
