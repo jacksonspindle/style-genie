@@ -1,3 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Poppins:ital,wght@0,100;0,600;0,700;1,100;1,600;1,700&display=swap');
+
 body {
-    background-color: #909090;
+    background: linear-gradient(-45deg, #fcf6e6, #4e96ed, rgb(4, 208, 241), #0000fd);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+    font-family: 'Inknut Antiqua', serif;
+}
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.button-small {
+    border-radius: .5rem;
+    background-color: rgba(255, 255, 255, .5);
+    border: 1px solid black;
+    height: 30px;
+    cursor: pointer;
+}
+
+.button-small:hover{
+        background-color: rgba(255, 255, 255, 1);
 }
