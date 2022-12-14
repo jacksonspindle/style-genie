@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Poppins:ital,wght@0,100;0,600;0,700;1,100;1,600;1,700&display=swap');
 
 nav {
-    z-index: 1;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,6 +12,7 @@ nav {
     /* font-family: 'Inknut Antiqua', serif; */
     font-family: 'Poppins', sans-serif;
     font-size: 30px;
+    padding-top: 2rem;
     /* font-weight: 500; */
 }
 

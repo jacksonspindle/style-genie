@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Poppins:ital,wght@0,100;0,600;0,700;1,100;1,600;1,700&display=swap');
 
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: linear-gradient(-45deg, #fcf6e6, #4e96ed, rgb(4, 208, 241), #0000fd);
     background-size: 400% 400%;
@@ -33,3 +38,4 @@ body {
 .button-small:hover{
         background-color: rgba(255, 255, 255, 1);
 }
+
