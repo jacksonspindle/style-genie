@@ -25,11 +25,15 @@ const Nav = () => {
   };
 
   return (
-    <div>
-      <Link to="/">StyleGenie</Link>
-
+    <nav className="nav">
+      <div>
+        <Link className="logo-container" to="/">
+          <img className="logo" src="../../static/styleGenie_icon.png"></img>
+          StyleGenie
+        </Link>
+      </div>
       {auth.id ? (
-        <div>
+        <div className="nav-right">
           <Link to="/create">Create</Link>
           <Link to="/profile">Profile</Link>
           <img
@@ -43,22 +47,29 @@ const Nav = () => {
       )}
 
       {menu ? (
-        <div>
-          <Link to="/designs" name="designs" onClick={handleMenuClick}>
-            {auth.firstName}'s designs
+        <div className="nav-menu">
+          <Link to="/profile" name="profile" onClick={handleMenuClick}>
+            Profile
+          </Link>
+          <Link to="/closet" name="closet" onClick={handleMenuClick}>
+            Closet
+          </Link>
+          <Link to="/closet" name="orders" onClick={handleMenuClick}>
+            Orders
           </Link>
           <Link to="/cart" name="cart" onClick={handleMenuClick}>
             Cart
           </Link>
-          <Link to="/profile" name="profile" onClick={handleMenuClick}>
-            Profile
-          </Link>
-          <button name="logout" onClick={handleMenuClick}>
+          <button
+            className="button-small"
+            name="logout"
+            onClick={handleMenuClick}
+          >
             Logout
           </button>
         </div>
       ) : null}
-    </div>
+    </nav>
   );
 };
 
