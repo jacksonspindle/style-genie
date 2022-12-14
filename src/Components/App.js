@@ -26,16 +26,14 @@ const App = () => {
     <div>
       <div>
         <Nav />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Home />} />
-          <Route path="/register" element={<Home />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
       </div>
-      {/* )} */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Home />} />
+        <Route path="/register" element={<Home />} />
+        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
     </div>
   );
 };
