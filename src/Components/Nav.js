@@ -33,8 +33,9 @@ const Nav = () => {
           <Link to="/create">Create</Link>
           <Link to="/profile">Profile</Link>
           <img
-            src={auth.avatar ? auth.avatar : "no profile"}
+            src={auth.avatar ? auth.avatar : "../../static/user-solid.svg"}
             onClick={toggleMenu}
+            className="nav-profile-icon"
           ></img>
         </div>
       ) : (
