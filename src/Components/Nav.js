@@ -35,7 +35,6 @@ const Nav = () => {
       {auth.id ? (
         <div className="nav-right">
           <Link to="/create">Create</Link>
-          <Link to="/profile">Profile</Link>
           <img
             src={auth.avatar ? auth.avatar : "../../static/user-solid.svg"}
             onClick={toggleMenu}
