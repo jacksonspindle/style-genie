@@ -21,26 +21,32 @@ const Login = () => {
     dispatch(attemptLogin(credentials, navigate));
   };
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={login}>
-        <input
-          placeholder="username"
-          name="username"
-          //   value={credentials.username}
-          onChange={onChange}
-        ></input>
-        <input
-          placeholder="password"
-          name="password"
-          //   value={credentials.password}
-          onChange={onChange}
-        ></input>
-        <button>Login</button>
-      </form>
-      <h3>
-        Don't have an account? <Link to="/register">Register Here</Link>
-      </h3>
+    <div className="login">
+      <div className="login-container">
+        <h1>Login</h1>
+        <form onSubmit={login}>
+          <input
+            className="login-input"
+            placeholder="username"
+            name="username"
+            //   value={credentials.username}
+            onChange={onChange}
+          ></input>
+          <input
+            className="login-input"
+            placeholder="password"
+            name="password"
+            //   value={credentials.password}
+            onChange={onChange}
+          ></input>
+          <div className="login-button-container">
+            <button className="button-large">Login</button>
+          </div>
+        </form>
+        <h3>
+          Don't have an account? <Link to="/register">Register Here</Link>
+        </h3>
+      </div>
     </div>
   );
 };

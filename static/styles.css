@@ -13,6 +13,10 @@ body {
     font-family: 'Inknut Antiqua', serif;
 }
 
+a {
+    color: black;
+}
+
 
 @keyframes gradient {
     0% {
@@ -39,3 +43,24 @@ body {
         background-color: rgba(255, 255, 255, 1);
 }
 
+
+.button-large {
+    border-radius: .5rem;
+    background-color: rgba(255, 255, 255, .5);
+    border: 1px solid black;
+    height: 50px;
+    width: 200px;
+    cursor: pointer;
+    font-size: 25px;
+    transition: .3s all ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.button-large:hover {
+    background-color: rgba(4, 208, 241, .5);
+    transform: scale(1.1)
+}

@@ -55,43 +55,79 @@ const Register = () => {
     }
   };
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={registerUser}>
-        <div>
-          <span>
-            <label htmlFor="firstName">First name *</label>
-            <input type="text" name="firstName" onChange={onChange}></input>
-          </span>
-          <span>
-            <label htmlFor="lastName">Last name *</label>
-            <input type="text" name="lastName" onChange={onChange}></input>
-          </span>
-        </div>
+    <div className="register">
+      <div className="register-form-container">
+        <h1>Sign Up</h1>
+        <form onSubmit={registerUser}>
+          <div className="first-last-name-container">
+            <span>
+              <label htmlFor="firstName">First name *</label>
+              <input
+                className="register-input"
+                type="text"
+                name="firstName"
+                onChange={onChange}
+              ></input>
+            </span>
+            <span>
+              <label htmlFor="lastName">Last name *</label>
+              <input
+                className="register-input"
+                type="text"
+                name="lastName"
+                onChange={onChange}
+              ></input>
+            </span>
+          </div>
 
-        <label htmlFor="email">Email *</label>
-        <input type="text" name="email" onChange={onChange}></input>
-        <label htmlFor="username">Username *</label>
-        <input type="text" name="username" onChange={onChange}></input>
-        <label htmlFor="password">Password *</label>
-        <input type="text" name="password" onChange={onChange}></input>
-        <div>
-          <span>
-            <label htmlFor="avatar">Choose a profile picture</label>
-            <input
-              type="file"
-              name="avatar"
-              accept="image/*"
-              ref={(x) => setFile(x)}
-            ></input>
-          </span>
-          {avatar ? <img src={avatar} /> : <div></div>}
-        </div>
-        <button>Sign up</button>
-      </form>
+          <label htmlFor="email">Email *</label>
+          <input
+            className="register-input"
+            type="text"
+            name="email"
+            onChange={onChange}
+          ></input>
+          <label htmlFor="username">Username *</label>
+          <input
+            className="register-input"
+            type="text"
+            name="username"
+            onChange={onChange}
+          ></input>
+          <label htmlFor="password">Password *</label>
+          <input
+            className="register-input"
+            type="text"
+            name="password"
+            onChange={onChange}
+          ></input>
+          <div className="profile-upload-container">
+            <span className="profile-upload">
+              <label htmlFor="avatar">Choose a profile picture</label>
+              <label htmlFor="avatar">
+                <i class="fa fa-cloud-upload"></i>
+              </label>
+              <input
+                type="file"
+                name="avatar"
+                accept="image/*"
+                ref={(x) => setFile(x)}
+              ></input>
+            </span>
+            {avatar ? (
+              <img className="register-image" src={avatar} />
+            ) : (
+              <div></div>
+            )}
+          </div>
+          <div className="button-container">
+            <button className="button-large">Sign up</button>
+          </div>
+        </form>
 
-      <div>
-        Already have an account? <Link to="/login">Sign In</Link>
+        <div>
+          Already have an account? <Link to="/login">Sign In</Link>
+        </div>
       </div>
     </div>
   );
