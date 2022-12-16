@@ -22,6 +22,7 @@ export default function Model({ ...props }) {
         position={[-0.04, -0.33, 0]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
+        material-color={props.color}
       />
     </group>
   );

@@ -104,9 +104,6 @@ const Register = () => {
           <div className="profile-upload-container">
             <span className="profile-upload">
               <label htmlFor="avatar">Choose a profile picture</label>
-              <label htmlFor="avatar">
-                <i class="fa fa-cloud-upload"></i>
-              </label>
               <input
                 type="file"
                 name="avatar"
