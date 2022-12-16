@@ -43,7 +43,6 @@ const Home = () => {
               </div>
             </div>
           )}
-          {auth.id ? `Welcome ${auth.username}!` : ``}
         </div>
       )}
       <div className="canvas">
