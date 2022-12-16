@@ -7,6 +7,7 @@ import { Link, Routes, Route } from "react-router-dom";
 import Register from "./Register";
 import Profile from "./Profile";
 import Nav from "./Nav";
+import CreateHoodie from "./CreateHoodie";
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Home />} />
         <Route path="/register" element={<Home />} />
+        <Route path="/create" element={<CreateHoodie />} />
         {/* <Route path="/cart" element={<Cart />} /> */}
         <Route path="/profile" element={<Profile />} />
       </Routes>
