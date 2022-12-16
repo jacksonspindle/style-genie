@@ -31,7 +31,18 @@ const Home = () => {
         <Register />
       ) : (
         <div>
-          <Link to="/register">Start Here</Link>
+          {auth.id ? (
+            ""
+          ) : (
+            <div className="hero-container">
+              <div className="hero">
+                <h1>Design Your Own Hoodie Using AI</h1>
+                <Link to="/register" className="button-large">
+                  Start Here
+                </Link>
+              </div>
+            </div>
+          )}
           {auth.id ? `Welcome ${auth.username}!` : ``}
         </div>
       )}
@@ -40,7 +51,7 @@ const Home = () => {
           <Hoodie />
           <ambientLight />
           <directionalLight />
-          <OrbitControls maxDistance={16} minDistance={9} />
+          <OrbitControls maxDistance={16} minDistance={9} enableZoom={false} />
         </Canvas>
       </div>
     </div>

@@ -1,0 +1,16 @@
+.hero-container {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.hero{
+    z-index: 50;
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+}
+
