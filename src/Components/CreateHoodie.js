@@ -15,6 +15,25 @@ const CreateHoodie = () => {
     console.log(color);
   }, [color]);
 
+  const getImage = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setImage("");
+    const imageResult = await axios.post("/api/image", { prompt });
+    setImage(`data:image/png;base64,${imageResult.data}`);
+    setLoading(false);
+  };
+
+  const displayImage = () => {
+    if (!image && !loading) {
+      return <img src="../../static/default-image.png" />;
+    } else if (!image && loading) {
+      return "";
+    } else {
+      return <img src={image} />;
+    }
+  };
+
   return (
     <div className="create-hoodie">
       <div className="create-hoodie-container">
