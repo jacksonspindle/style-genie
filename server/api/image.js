@@ -6,6 +6,7 @@ const app = express.Router();
 module.exports = app;
 
 app.post("/", async (req, res, next) => {
+  console.log(response);
   try {
     const { prompt } = req.body;
     const configuration = new Configuration({
