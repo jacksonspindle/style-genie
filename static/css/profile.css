@@ -1,0 +1,86 @@
+.profile {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    color: black;
+    top: 10%;
+    background-color: rgba(255, 255, 255, .6);
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 60%;
+}
+
+.profile-container img {
+    width: 300px;
+}
+
+
+.profile-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-profile-form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, .6);
+    padding: 2rem;
+    border-radius: 2rem;
+    color: black;
+    top: 10%;
+    width: 60%;
+} 
+
+.display-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.firstName-lastName-input-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.edit-profile-form-container{
+    display: flex;
+    justify-content: center;
+}
+
+.edit-profile-form img {
+    width: 300px;
+    cursor: pointer;
+}
+
+.profile-image-container{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-image-input-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.edit-profile-form input {
+    border-radius: .5rem;
+        height: 30px;
+        border: 1px solid blue;
+}
+
+.edit-profile-button-container{
+    display: flex;
+    margin-top: 1.5rem;
+    gap: 1rem;
+    justify-content: center;
+}
