@@ -17,6 +17,7 @@ const Register = () => {
 
   const [file, setFile] = useState(null);
   const [avatar, setAvatar] = useState("");
+  const [error, setError] = useState({});
 
   useEffect(() => {
     if (file) {
@@ -50,10 +51,23 @@ const Register = () => {
       });
       setAvatar("");
       setFile(null);
-    } catch (ex) {
-      console.log(ex);
+      setError({});
+      console.log(error);
+      console.log(errorMessages);
+    } catch (err) {
+      console.log(err);
+      setError({ errors: err.response.data });
     }
   };
+
+  let errorMessages = [];
+
+  if (error.errors) {
+    console.log(error);
+    errorMessages = error.errors.map((err) => err.message);
+    console.log(errorMessages);
+  }
+
   return (
     <div className="register">
       <div className="register-form-container">
@@ -117,10 +131,28 @@ const Register = () => {
               <div></div>
             )}
           </div>
+
           <div className="button-container">
             <button className="button-large">Sign up</button>
           </div>
         </form>
+
+        {errorMessages.length ? (
+          <div className="error-container">
+            <span>
+              Could not register your new user! Please address these errors:
+            </span>
+            <ul>
+              {errorMessages.map((msg) => {
+                return (
+                  <li className="register-error-message" key={msg}>
+                    {msg}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
 
         <div>
           Already have an account? <Link to="/login">Sign In</Link>

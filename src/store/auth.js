@@ -41,7 +41,7 @@ export const attemptLogin = (credentials, navigate) => {
 
 export const register = (credentials, navigate) => {
   return async (dispatch) => {
-    const response = axios.post("/api/auth/register", credentials);
+    const response = await axios.post("/api/auth/register", credentials);
     window.localStorage.setItem("token", response.data);
     dispatch(loginWithToken());
     navigate("/login");

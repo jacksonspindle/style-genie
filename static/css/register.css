@@ -11,7 +11,7 @@
     width: 60vw;
     position: absolute;
     z-index: 5;
-    top: 15%;
+    top: 8%;
     border-radius: 3rem;
     padding-bottom: 1rem;
 }
@@ -45,7 +45,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     align-items: center;
 }
 
@@ -70,4 +70,17 @@
 .button-container{
     display: flex;
     justify-content: center;
+}
+
+.error-container{
+    padding: 1rem;
+}
+
+.error-container span {
+    font-size: 14px;
+}
+
+.register-error-message{
+    color: red;
+    font-size: 12px;
 }
