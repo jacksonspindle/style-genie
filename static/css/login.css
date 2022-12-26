@@ -14,6 +14,7 @@
     top: 30%;
     border-radius: 3rem;
     padding-bottom: 1rem;
+    justify-content: center;
 }
 
 .login-container form {
@@ -35,4 +36,14 @@
 .login-button-container{
     display: flex;
     justify-content: center;
+}
+
+
+.login-error {
+    color: red;
+    font-size: 12px;
+}
+
+.dont-have-an-account{
+    font-size: 16px;
 }

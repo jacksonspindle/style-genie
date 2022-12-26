@@ -11,14 +11,22 @@ const Login = () => {
     password: "",
   });
 
+  const [error, setError] = useState(null);
+
   const onChange = (ev) => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
   };
 
-  const login = (ev) => {
-    console.log(credentials);
+  const login = async (ev) => {
     ev.preventDefault();
-    dispatch(attemptLogin(credentials, navigate));
+    const response = await dispatch(attemptLogin(credentials, navigate));
+    if (
+      response &&
+      (response.includes("bad credentials") ||
+        response.includes("user not found"))
+    ) {
+      setError("Incorrect email or password. Please try again.");
+    }
   };
   return (
     <div className="login">
@@ -39,11 +47,17 @@ const Login = () => {
             //   value={credentials.password}
             onChange={onChange}
           ></input>
+
           <div className="login-button-container">
-            <button className="button-large">Login</button>
+            <button onClick={login} className="button-large">
+              Login
+            </button>
           </div>
         </form>
-        <h3>
+        <div className="login-error-container">
+          {error ? <div className="login-error">{error}</div> : null}
+        </div>
+        <h3 className="dont-have-an-account">
           Don't have an account? <Link to="/register">Register Here</Link>
         </h3>
       </div>
