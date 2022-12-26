@@ -6,6 +6,7 @@ import { register } from "../store";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState({
     email: "",
