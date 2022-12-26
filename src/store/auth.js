@@ -44,7 +44,7 @@ export const register = (credentials, navigate) => {
     const response = await axios.post("/api/auth/register", credentials);
     window.localStorage.setItem("token", response.data);
     dispatch(loginWithToken());
-    navigate("/login");
+    navigate("/create");
   };
 };
 
