@@ -11,10 +11,6 @@ const CreateHoodie = () => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
 
-  useEffect(() => {
-    console.log(color);
-  }, [color]);
-
   const getImage = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -33,6 +29,10 @@ const CreateHoodie = () => {
       return <img src={image} />;
     }
   };
+
+  useEffect(() => {
+    document.title = "StyleGenie 🎨";
+  }, []);
 
   return (
     <div className="create-hoodie">

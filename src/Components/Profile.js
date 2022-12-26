@@ -20,6 +20,19 @@ const Profile = () => {
 
   const [file, setFile] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [error, setError] = useState({});
+
+  useEffect(() => {
+    document.title = "StyleGenie: 👤";
+    setAccountInfo({
+      ...accountInfo,
+      email: auth.email,
+      firstName: auth.firstName,
+      lastName: auth.lastName,
+      username: auth.username,
+      avatar: auth.avatar,
+    });
+  }, [auth]);
 
   useEffect(() => {
     if (file) {
@@ -39,17 +52,25 @@ const Profile = () => {
   };
 
   const save = async (e) => {
-    // e.preventDefault();
+    errorMessages.length ? null : e.preventDefault();
+
     try {
       await dispatch(updateAuth({ ...accountInfo, id: auth.id }));
       setAccountInfo({ ...accountInfo, password: "" });
       setEditing(false);
       console.log("edited");
     } catch (ex) {
-      // setError({ errors: ex.response.data });
+      setError({ errors: ex.response.data });
       console.log(ex);
     }
   };
+
+  let errorMessages = [];
+
+  if (error.errors) {
+    errorMessages = error.errors.map((err) => err.message);
+    console.log(errorMessages);
+  }
 
   const cancel = () => {
     setEditing(false);
@@ -145,6 +166,19 @@ const Profile = () => {
                 placeholder="Type your old password to confirm or a new password to change"
                 required
               ></input>
+
+              {errorMessages.length ? (
+                <div className="profile-edit-error">
+                  <span>
+                    Could not update your profile! Please address these errors:
+                  </span>
+                  <ul>
+                    {errorMessages.map((msg) => {
+                      return <li key={msg}>{msg}</li>;
+                    })}
+                  </ul>
+                </div>
+              ) : null}
 
               <div className="edit-profile-button-container">
                 <button className="button-small" onClick={cancel}>

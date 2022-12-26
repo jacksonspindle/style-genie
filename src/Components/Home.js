@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store";
 import { useLocation, Link, Navigate } from "react-router-dom";
@@ -22,6 +22,10 @@ const Home = () => {
       navigate("/register");
     }
   };
+
+  useEffect(() => {
+    document.title = "StyleGenie 🏠";
+  }, []);
 
   return (
     <div>
