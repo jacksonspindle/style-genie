@@ -28,10 +28,14 @@ export const loginWithToken = () => {
 
 export const attemptLogin = (credentials, navigate) => {
   return async (dispatch) => {
-    const response = await axios.post("/api/auth", credentials);
-    window.localStorage.setItem("token", response.data);
-    dispatch(loginWithToken());
-    navigate("/");
+    try {
+      const response = await axios.post("/api/auth", credentials);
+      window.localStorage.setItem("token", response.data);
+      dispatch(loginWithToken());
+      navigate("/");
+    } catch (ex) {
+      return ex.response.data;
+    }
   };
 };
 
