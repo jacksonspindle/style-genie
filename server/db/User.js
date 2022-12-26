@@ -10,27 +10,54 @@ const User = conn.define("user", {
     defaultValue: UUIDV4,
     primaryKey: true,
   },
+  email: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "All users must have an email address on file",
+      },
+      isEmail: {
+        msg: "Entered email is not a valid email address",
+      },
+    },
+    unique: true,
+  },
   username: {
     type: STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
+      notEmpty: {
+        msg: "Please enter a username.",
+      },
     },
   },
   password: {
     type: STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
+      notEmpty: {
+        msg: "Please enter a password",
+      },
     },
   },
   firstName: {
     type: STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Please enter your first name",
+      },
+    },
   },
   lastName: {
     type: STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Please enter your last name",
+      },
+    },
   },
   isAdmin: {
     type: BOOLEAN,

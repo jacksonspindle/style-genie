@@ -20,10 +20,11 @@ const Login = () => {
   const login = async (ev) => {
     ev.preventDefault();
     const response = await dispatch(attemptLogin(credentials, navigate));
+    console.log(response);
     if (
       response &&
-      (response.includes("bad credentials") ||
-        response.includes("user not found"))
+      (response.errors === "bad credentials" ||
+        response.errors === "user not found")
     ) {
       setError("Incorrect email or password. Please try again.");
     }

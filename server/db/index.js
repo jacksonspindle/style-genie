@@ -13,12 +13,14 @@ const syncAndSeed = async () => {
   await conn.sync({ force: true });
   const [jackson, lucy] = await Promise.all([
     User.create({
+      email: "jackson.spindle@gmail.com",
       username: "jackson",
       password: "123",
       firstName: "Jackson",
       lastName: "Spindle",
     }),
     User.create({
+      email: "lucy.garden@gmail.com",
       username: "lucy",
       password: "123",
       firstName: "Lucy",
