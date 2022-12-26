@@ -30,3 +30,12 @@ app.get("/", isLoggedIn, (req, res, next) => {
     next(ex);
   }
 });
+
+app.put("/", isLoggedIn, async (req, res, next) => {
+  try {
+    const user = req.user;
+    await user.update(req.body);
+  } catch (ex) {
+    next(ex);
+  }
+});
