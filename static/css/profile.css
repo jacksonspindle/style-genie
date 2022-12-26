@@ -84,3 +84,8 @@
     gap: 1rem;
     justify-content: center;
 }
+
+.profile-edit-error {
+    color: red;
+    font-size: 12px;
+}
