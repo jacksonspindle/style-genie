@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateAuth } from "../store";
 
 const Profile = () => {
   const { auth } = useSelector((state) => state);
@@ -35,11 +36,12 @@ const Profile = () => {
   };
 
   const save = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       await dispatch(updateAuth({ ...accountInfo, id: auth.id }));
       setAccountInfo({ ...accountInfo, password: "" });
       setEditing(false);
+      console.log("edited");
     } catch (ex) {
       // setError({ errors: ex.response.data });
       console.log(ex);
@@ -53,6 +55,7 @@ const Profile = () => {
       email: auth.email,
       firstName: auth.firstName,
       lastName: auth.lastName,
+      username: auth.username,
       avatar: auth.avatar,
     });
   };
@@ -119,7 +122,16 @@ const Profile = () => {
               onChange={onChange}
             ></input>
 
-            <label htmlFor="password">Password</label>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={accountInfo.username}
+              name="username"
+              onChange={onChange}
+            ></input>
+
+            <label htmlFor="password">Password *</label>
             <input
               type="text"
               id="password"
