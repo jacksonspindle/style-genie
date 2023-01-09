@@ -4,10 +4,12 @@ import { updateAuth } from "../store";
 import Hoodie from "./Hoodie";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [accountInfo, setAccountInfo] = useState({
     email: "",
@@ -52,8 +54,10 @@ const Profile = () => {
   };
 
   const save = async (e) => {
-    errorMessages.length ? null : e.preventDefault();
-
+    console.log(errorMessages.length);
+    errorMessages.length ? navigate("/create") : e.preventDefault();
+    // USE NAVIGATE INSTEAD OF PREVENT DEFAULT
+    console.log(errorMessages);
     try {
       await dispatch(updateAuth({ ...accountInfo, id: auth.id }));
       setAccountInfo({ ...accountInfo, password: "" });
@@ -223,7 +227,7 @@ const Profile = () => {
 
       <Canvas>
         <mesh>
-          <Hoodie />
+          <Hoodie image={"../../static/trap.png"} />
           <ambientLight />
           <OrbitControls maxDistance={16} minDistance={9} enableZoom={false} />
         </mesh>
