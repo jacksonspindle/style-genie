@@ -37,7 +37,8 @@ const Nav = () => {
           <Link to="/create">Create</Link>
           <img
             src={auth.avatar ? auth.avatar : "../../static/user-solid.svg"}
-            onClick={toggleMenu}
+            onMouseEnter={toggleMenu}
+            // onMouseLeave={toggleMenu}
             className="nav-profile-icon"
           ></img>
         </div>
@@ -46,7 +47,7 @@ const Nav = () => {
       )}
 
       {menu ? (
-        <div className="nav-menu">
+        <div onMouseLeave={toggleMenu} className="nav-menu">
           <Link to="/profile" name="profile" onClick={handleMenuClick}>
             Profile
           </Link>

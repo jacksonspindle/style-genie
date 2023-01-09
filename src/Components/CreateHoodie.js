@@ -10,6 +10,7 @@ const CreateHoodie = () => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
+  const [result, setResult] = useState("");
 
   const getImage = async (e) => {
     e.preventDefault();
@@ -30,6 +31,10 @@ const CreateHoodie = () => {
     }
   };
 
+  const addToHoodie = () => {
+    setResult(image);
+  };
+
   useEffect(() => {
     document.title = "StyleGenie 🎨";
   }, []);
@@ -40,7 +45,7 @@ const CreateHoodie = () => {
         <div>
           <Canvas>
             <mesh>
-              <Hoodie color={color} />
+              <Hoodie color={color} image={result} />
               <ambientLight />
               <OrbitControls minDistance={10} maxDistance={15} />
             </mesh>
@@ -62,6 +67,8 @@ const CreateHoodie = () => {
             Generate Image
           </button>
           {displayImage()}
+
+          <button onClick={addToHoodie}>Add to Hoodie</button>
         </div>
       </div>
     </div>
