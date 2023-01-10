@@ -51,7 +51,7 @@ const Home = () => {
       )}
       <div className="canvas">
         <Canvas>
-          <Hoodie image="../../static/trap.png" />
+          <Hoodie image={"../../static/trap.png"} />
           <ambientLight />
           <directionalLight />
           <OrbitControls maxDistance={16} minDistance={9} enableZoom={false} />

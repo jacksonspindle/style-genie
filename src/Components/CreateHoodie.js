@@ -4,8 +4,12 @@ import Hoodie from "./Hoodie";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { HexColorPicker } from "react-colorful";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 const CreateHoodie = () => {
+  const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const [color, setColor] = useState("#FFFFFF");
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,6 +37,21 @@ const CreateHoodie = () => {
 
   const addToHoodie = () => {
     setResult(image);
+  };
+
+  const addToCollection = (ev) => {
+    console.log("adding to collection!");
+    console.log(auth);
+    const hoodie = {
+      id: auth.id,
+      name: prompt,
+      bodyColor: color,
+      image: image.replace("data:image/png;base64,", ""),
+    };
+
+    if (image.startsWith("data:image/png;base64,")) {
+      dispatch(addToCloset(hoodie));
+    }
   };
 
   useEffect(() => {
@@ -69,6 +88,9 @@ const CreateHoodie = () => {
           {displayImage()}
 
           <button onClick={addToHoodie}>Add to Hoodie</button>
+        </div>
+        <div>
+          <button onClick={addToCollection}>Save Design</button>
         </div>
       </div>
     </div>
