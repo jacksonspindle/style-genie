@@ -1,13 +1,13 @@
 const conn = require("./conn");
 const User = require("./User");
-const Product = require("./Product");
+const Hoodie = require("./Hoodie");
 const Order = require("./Order");
 const LineItem = require("./LineItem");
 
 Order.belongsTo(User);
 LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
-LineItem.belongsTo(Product);
+LineItem.belongsTo(Hoodie);
 
 const syncAndSeed = async () => {
   await conn.sync({ force: true });
@@ -38,5 +38,5 @@ const syncAndSeed = async () => {
 module.exports = {
   syncAndSeed,
   User,
-  Product,
+  Hoodie,
 };
