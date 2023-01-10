@@ -80,6 +80,18 @@ const User = conn.define("user", {
   },
 });
 
+User.prototype.getCloset = async function () {
+  const closet = await conn.models.hoodie.findAll({
+    where: {
+      userId: this.id,
+    },
+  });
+  if (!closet) {
+    return [];
+  }
+  return closet;
+};
+
 User.addHook("beforeSave", async (user) => {
   if (user.changed("password")) {
     user.password = await bcrypt.hash(user.password, 5);
