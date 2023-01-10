@@ -5,6 +5,7 @@ import { OrbitControls, Environment } from "@react-three/drei";
 import { HexColorPicker } from "react-colorful";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { addToCloset } from "../store/hoodies";
 
 const CreateHoodie = () => {
   const { auth } = useSelector((state) => state);
@@ -41,9 +42,8 @@ const CreateHoodie = () => {
 
   const addToCollection = (ev) => {
     console.log("adding to collection!");
-    console.log(auth);
     const hoodie = {
-      id: auth.id,
+      userId: auth.id,
       name: prompt,
       bodyColor: color,
       image: image.replace("data:image/png;base64,", ""),
@@ -51,6 +51,7 @@ const CreateHoodie = () => {
 
     if (image.startsWith("data:image/png;base64,")) {
       dispatch(addToCloset(hoodie));
+      console.log(hoodie);
     }
   };
 

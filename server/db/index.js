@@ -8,6 +8,8 @@ Order.belongsTo(User);
 LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
 LineItem.belongsTo(Hoodie);
+Hoodie.belongsTo(User);
+User.hasMany(Hoodie);
 
 const syncAndSeed = async () => {
   await conn.sync({ force: true });
