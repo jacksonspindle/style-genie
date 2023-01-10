@@ -10,7 +10,7 @@ app.post("/", async (req, res, next) => {
     const { prompt } = req.body;
     console.log(prompt);
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
 
     const openai = new OpenAIApi(configuration);
