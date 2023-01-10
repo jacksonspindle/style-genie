@@ -1,0 +1,10 @@
+.closet-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding:0 10rem 0 10rem;
+}
+
+.closet-container h1 {
+    font-size: 15px;
+}

@@ -8,6 +8,7 @@ import Register from "./Register";
 import Profile from "./Profile";
 import Nav from "./Nav";
 import CreateHoodie from "./CreateHoodie";
+import Closet from "./Closet";
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/create" element={<CreateHoodie />} />
         {/* <Route path="/cart" element={<Cart />} /> */}
         <Route path="/profile" element={<Profile />} />
+        <Route path="/closet" element={<Closet />} />
       </Routes>
     </div>
   );
