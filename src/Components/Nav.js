@@ -60,6 +60,9 @@ const Nav = () => {
           <Link to="/cart" name="cart" onClick={handleMenuClick}>
             Cart
           </Link>
+          <Link to="/faq" name="faq" onClick={handleMenuClick}>
+            FAQ
+          </Link>
           <button
             className="button-small"
             name="logout"
