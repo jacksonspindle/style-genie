@@ -1,0 +1,9 @@
+.faq {
+    display: flex; 
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 6rem 6rem 6rem;
+}
