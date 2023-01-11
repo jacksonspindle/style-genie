@@ -8,34 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCloset } from "../store/hoodies";
 import { useControls, button, folder } from "leva";
 
-const Scene = (props) => {
-  const gl = useThree((state) => state.gl);
-  useControls({
-    screenshot: button(() => {
-      const link = document.createElement("a");
-      link.setAttribute("download", "canvas.png");
-      link.setAttribute(
-        "href",
-        gl.domElement
-          .toDataURL("image/png")
-          .replace("image/png", "image/octet-stream")
-      );
-      link.click();
-    }),
-  });
-  console.log(props);
-  return (
-    <>
-      <mesh>
-        <Hoodie color={props.color} image={props.result} />
-        <ambientLight />
-        <OrbitControls minDistance={10} maxDistance={15} />
-      </mesh>
-      <Environment preset="city" />
-    </>
-  );
-};
-
 const CreateHoodie = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -98,33 +70,55 @@ const CreateHoodie = () => {
     setDalleToggle(!dalleToggle);
   };
 
-  const { ...props } = useControls({
-    // myFooColor: "#fff",
-    // myBarColor: { r: 200, b: 125, g: 106, a: 0.4 },
-    // enabled: true,
-    // movingDownsampling: true,
-    // useTileRender: false,
-    // dpr: { value: 1.5, min: 0.5, max: 2, step: 0.5 },
-    // samples: { value: 128, min: 8, max: 2048, step: 8 },
-    // bounces: { value: 4, min: 1, max: 10, step: 1 },
-    // envMapIntensity: { value: 0.7, min: 0, max: 1 },
-    // denoise: folder({
-    //   enableDenoise: false,
-    //   enableTemporalDenoise: true,
-    //   enableSpatialDenoise: true,
-    //   denoiseColorBlendFactor: { value: 0.5, min: 0, max: 1 },
-    //   denoiseMomentBlendFactor: { value: 0.5, min: 0, max: 1 },
-    //   denoiseColorFactor: { value: 0.1, min: 0, max: 1 },
-    //   denoisePositionFactor: { value: 0.1, min: 0, max: 1 },
-    // }),
+  const onDownload = () => {
+    const a = document.createElement("a");
+    a.href = imageUrl;
+    a.download = "screenshot.png";
+    a.click();
+  };
+
+  const gl = useThree((state) => state.gl);
+  const { enabled, dpr, ...props } = useControls({
+    screenshot: button(() => {
+      const link = document.createElement("a");
+      link.setAttribute("download", "canvas.png");
+      link.setAttribute(
+        "href",
+        gl.domElement
+          .toDataURL("image/png")
+          .replace("image/png", "image/octet-stream")
+      );
+      link.click();
+    }),
+    enabled: true,
+    movingDownsampling: true,
+    useTileRender: false,
+    dpr: { value: 1.5, min: 0.5, max: 2, step: 0.5 },
+    samples: { value: 128, min: 8, max: 2048, step: 8 },
+    bounces: { value: 4, min: 1, max: 10, step: 1 },
+    envMapIntensity: { value: 0.7, min: 0, max: 1 },
+    denoise: folder({
+      enableDenoise: false,
+      enableTemporalDenoise: true,
+      enableSpatialDenoise: true,
+      denoiseColorBlendFactor: { value: 0.5, min: 0, max: 1 },
+      denoiseMomentBlendFactor: { value: 0.5, min: 0, max: 1 },
+      denoiseColorFactor: { value: 0.1, min: 0, max: 1 },
+      denoisePositionFactor: { value: 0.1, min: 0, max: 1 },
+    }),
   });
 
   return (
     <div className="create-hoodie">
       <div className="create-hoodie-container">
         <div>
-          <Canvas gl={{ preserveDrawingBuffer: true }}>
-            <Scene color={color} result={result} />
+          <Canvas>
+            <mesh>
+              <Hoodie color={color} image={result} />
+              <ambientLight />
+              <OrbitControls minDistance={10} maxDistance={15} />
+            </mesh>
+            <Environment preset="city" />
           </Canvas>
         </div>
         <div className="color-picker">
