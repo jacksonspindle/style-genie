@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCloset } from "../store/hoodies";
 import { useControls, button, folder } from "leva";
+import { addCart } from "../store";
 
 const Scene = (props) => {
   const gl = useThree((state) => state.gl);
@@ -119,6 +120,13 @@ const CreateHoodie = () => {
     // }),
   });
 
+  const putInCart = (hoodie) => {
+    if (auth.id) {
+      dispatch(addCart(hoodie));
+      alert("added to cart!");
+    }
+  };
+
   return (
     <div className="create-hoodie">
       <div className="create-hoodie-container">
@@ -147,6 +155,9 @@ const CreateHoodie = () => {
         </div>
         <div>
           <button onClick={addToCollection}>Save Design</button>
+        </div>
+        <div>
+          <button onClick={putInCart}>Add To Cart</button>
         </div>
       </div>
     </div>
