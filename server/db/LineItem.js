@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, INTEGER } = require("sequelize");
+const { UUID, UUIDV4, INTEGER, ENUM, VIRTUAL } = require("sequelize");
 const conn = require("./conn");
 
 const LineItem = conn.define("lineItem", {
@@ -19,6 +19,18 @@ const LineItem = conn.define("lineItem", {
   orderId: {
     type: UUID,
     allowNull: false,
+  },
+  size: {
+    type: ENUM,
+    values: ["x-small", "small", "medium", "large", "x-large"],
+    defaultValue: "medium",
+    allowNull: false,
+  },
+  totalPrice: {
+    type: VIRTUAL,
+    get() {
+      return this.quantity * this, garment.price;
+    },
   },
 });
 

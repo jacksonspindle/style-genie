@@ -1,5 +1,5 @@
 const conn = require("./conn");
-const { UUID, UUIDV4, STRING, BOOLEAN, TEXT } = require("sequelize");
+const { UUID, UUIDV4, STRING, BOOLEAN, TEXT, INTEGER } = require("sequelize");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JWT = process.env.JWT;
@@ -64,6 +64,43 @@ const User = conn.define("user", {
     allowNull: false,
     defaultValue: false,
   },
+  address: {
+    type: STRING,
+    defaultValue: "123 Maple Street",
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  addressDetails: {
+    type: STRING,
+    defaultValue: "",
+    allowNull: true,
+  },
+  city: {
+    type: STRING,
+    defaultValue: "Anytown",
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  state: {
+    type: STRING,
+    defaultValue: "PA",
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  zip: {
+    type: INTEGER,
+    defaultValue: 17101,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   avatar: {
     type: TEXT,
     get: function () {
@@ -78,7 +115,94 @@ const User = conn.define("user", {
       return `${prefix}${data}`;
     },
   },
+  payment: {
+    type: STRING,
+    defaultValue: "",
+  },
 });
+
+User.prototype.createOrder = async function () {
+  const cart = await this.getCart();
+  cart.isCart = false;
+  await cart.save();
+  return cart;
+};
+
+User.prototype.getCart = async function () {
+  let cart = await conn.models.order.findOne({
+    where: {
+      userId: this.id,
+      isCart: true,
+    },
+  });
+  if (!cart) {
+    cart = await conn.models.order.create({
+      userId: this.id,
+    });
+  }
+  cart = await conn.models.findByPk(cart.id, {
+    include: [
+      {
+        model: conn.models.lineItem,
+        include: [conn.models.hoodie],
+      },
+    ],
+  });
+  return cart;
+};
+
+User.prototype.getOrders = async function () {
+  let orders = await conn.models.orders.findAll({
+    where: {
+      userId: this.id,
+      isCart: false,
+    },
+    include: [
+      {
+        model: conn.models.lineItem,
+        include: [conn.models.hoodie],
+      },
+    ],
+  });
+  return orders;
+};
+
+User.prototype.addToCart = async function ({ garment, quantity }) {
+  const cart = await this.getCart();
+  console.log(cart.lineItems);
+  console.log("Garment ID", garment.id);
+  let lineItem = cart.lineItems.find((lineItem) => {
+    return lineItem.garmentId === garment.id;
+  });
+  if (lineItem) {
+    lineItem.quantity += quantity;
+    await lineItem.save();
+  } else {
+    await conn.models.lineItem.create({
+      orderId: cart.id,
+      garmentId: garment.id,
+      quantity,
+    });
+  }
+  return this.getCart();
+};
+
+User.prototype.removeFromCart = async function ({
+  garment: garment,
+  quantityToRemove,
+}) {
+  const cart = await this.getCart();
+  const lineItem = cart.lineItems.find((lineItem) => {
+    return lineItem.garmentId === garment.id;
+  });
+  lineItem.quantity = lineItem.quantity - quantityToRemove;
+  if (lineItem.quantity > 0) {
+    await lineItem.save();
+  } else {
+    await lineItem.destroy();
+  }
+  return this.getCart();
+};
 
 User.prototype.getCloset = async function () {
   const closet = await conn.models.hoodie.findAll({

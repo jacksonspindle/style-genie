@@ -36,6 +36,9 @@ const Hoodie = conn.define("hoodie", {
       return `${prefix}${data}`;
     },
   },
+  size: {
+    type: STRING,
+  },
   bodyColor: {
     type: STRING,
     allowNull: false,

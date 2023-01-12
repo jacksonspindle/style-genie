@@ -8,6 +8,7 @@ app.use("/static", express.static(path.join(__dirname, "../static")));
 app.use("/api/auth", require("./api/auth"));
 app.use("/api/image", require("./api/image"));
 app.use("/api/hoodies", require("./api/hoodies"));
+app.use("/api/orders", require("./api/orders"));
 
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../static/index.html"))

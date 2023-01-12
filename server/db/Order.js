@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, BOOLEAN } = require("sequelize");
+const { UUID, UUIDV4, BOOLEAN, VIRTUAL } = require("sequelize");
 const conn = require("./conn");
 
 const Order = conn.define("order", {
@@ -15,6 +15,15 @@ const Order = conn.define("order", {
   userId: {
     type: UUID,
     allowNull: false,
+  },
+  totalPrice: {
+    type: VIRTUAL,
+    get() {
+      let total = 0;
+      for (let i of this.lineItems) {
+        total += i.totalPrice;
+      }
+    },
   },
 });
 
