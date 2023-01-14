@@ -140,7 +140,7 @@ User.prototype.getCart = async function () {
       userId: this.id,
     });
   }
-  cart = await conn.models.findByPk(cart.id, {
+  cart = await conn.models.order.findByPk(cart.id, {
     include: [
       {
         model: conn.models.lineItem,
@@ -148,6 +148,7 @@ User.prototype.getCart = async function () {
       },
     ],
   });
+  console.log(conn);
   return cart;
 };
 
@@ -180,7 +181,7 @@ User.prototype.addToCart = async function ({ garment, quantity }) {
   } else {
     await conn.models.lineItem.create({
       orderId: cart.id,
-      garmentId: garment.id,
+      hoodieId: garment.id,
       quantity,
     });
   }

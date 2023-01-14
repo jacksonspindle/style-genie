@@ -30,7 +30,7 @@ export const getCloset = () => {
 
 export const addToCloset = (hoodie) => {
   return async (dispatch) => {
-    console.log("getCloset function dispatched");
+    // console.log("getCloset function dispatched");
 
     const token = window.localStorage.getItem("token");
 

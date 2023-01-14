@@ -33,7 +33,8 @@ app.get("/orders", async (req, res, next) => {
 
 app.post("/cart", async (req, res, next) => {
   try {
-    const user = await User.findByToken(req.body.headers.author);
+    console.log(req.body.headers);
+    const user = await User.findByToken(req.body.headers.authorization);
     res.send(
       await user.addToCart({
         garment: req.body.garment,
@@ -42,6 +43,7 @@ app.post("/cart", async (req, res, next) => {
     );
   } catch (ex) {
     next(ex);
+    // console.log(res);
   }
 });
 

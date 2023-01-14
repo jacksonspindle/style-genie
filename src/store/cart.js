@@ -30,16 +30,25 @@ export const fetchCart = () => {
 
 export const addCart = (garment, quantity = 1) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
-    const response = await axios.post("/api/orders/cart", {
-      headers: {
-        authorization: token,
-      },
-    });
-    dispatch({
-      type: "SET_CART",
-      cart: response.data,
-    });
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await axios.post("/api/orders/cart", {
+        headers: {
+          authorization: token,
+        },
+        garment,
+        quantity,
+        hoodieId: garment.id,
+      });
+      console.log("test");
+      dispatch({
+        type: "ADD_CART",
+        cart: response.data,
+        // hoodieId: garment.id,
+      });
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 };
 

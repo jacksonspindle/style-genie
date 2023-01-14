@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, STRING, TEXT } = require("sequelize");
+const { UUID, UUIDV4, STRING, TEXT, INTEGER } = require("sequelize");
 const conn = require("./conn");
 
 const Hoodie = conn.define("hoodie", {
@@ -43,6 +43,11 @@ const Hoodie = conn.define("hoodie", {
     type: STRING,
     allowNull: false,
     defaultValue: "#FFFFFF",
+  },
+  price: {
+    type: INTEGER,
+    allowNull: false,
+    defaultValue: 120,
   },
 });
 

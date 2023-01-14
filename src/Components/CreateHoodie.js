@@ -11,17 +11,21 @@ import { addCart } from "../store";
 
 const Scene = (props) => {
   const gl = useThree((state) => state.gl);
+  // const [imageDownload, setImageDownload] = useState("");
   useControls({
     screenshot: button(() => {
       const link = document.createElement("a");
-      link.setAttribute("download", "canvas.png");
+      link.setAttribute("download", "hoodie.png");
       link.setAttribute(
         "href",
         gl.domElement
           .toDataURL("image/png")
           .replace("image/png", "image/octet-stream")
       );
+      setImageDownload(link);
       link.click();
+
+      // console.log(imageDownload);
     }),
   });
   console.log(props);
@@ -87,7 +91,7 @@ const CreateHoodie = () => {
 
     if (image.startsWith("data:image/png;base64,")) {
       dispatch(addToCloset(hoodie));
-      console.log(hoodie);
+      // console.log(hoodie);
     }
   };
 
@@ -120,12 +124,20 @@ const CreateHoodie = () => {
     // }),
   });
 
-  const putInCart = (hoodie) => {
-    if (auth.id) {
-      dispatch(addCart(hoodie));
-      alert("added to cart!");
-    }
-  };
+  // const putInCart = (garment) => {
+  //   if (auth.id) {
+  //     const garment = {
+  //       productId: "",
+  //       userId: auth.id,
+  //       name: prompt,
+  //       bodyColor: color,
+  //       image: image.replace("data:image/png;base64,", ""),
+  //     };
+  //     console.log(garment);
+  //     dispatch(addCart(garment));
+  //     alert("added to cart!");
+  //   }
+  // };
 
   return (
     <div className="create-hoodie">
@@ -156,9 +168,9 @@ const CreateHoodie = () => {
         <div>
           <button onClick={addToCollection}>Save Design</button>
         </div>
-        <div>
+        {/* <div>
           <button onClick={putInCart}>Add To Cart</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
