@@ -45,29 +45,45 @@ const Cart = () => {
     }
   };
 
+  //   const data = [
+  //     { key1: 1, key2: 2 },
+  //     { key1: 3, key2: 4 },
+  //     { key1: 5, key2: 6 },
+  //   ];
+  //   const key = "key1";
+
+  const total = cart.lineItems.reduce((acc, curr) => {
+    return acc + curr["totalPrice"];
+  }, 0);
+
   if (cart) {
     return (
       <div className="cart-container">
-        <h1>
-          Cart - {cart.lineItems.length ? `Total: $${cart.totalPrice}` : ""}
-        </h1>
+        <h1>Cart - {cart.lineItems.length ? `Total: $${total}` : ""}</h1>
         <ol>
           {cart.lineItems.length
             ? cart.lineItems.map((lineItem) => {
                 console.log("lineItemPrice: ", lineItem.totalPrice);
+                console.log(lineItem.id);
                 const hoodie = hoodies.find(
-                  (hoodie) => hoodie.id === lineItem.productId
+                  (hoodie) => hoodie.id === lineItem.hoodieId
                 );
+                console.log(hoodies);
+                console.log(cart.lineItems[0].quantity);
+                console.log(cart.lineItems);
                 return (
                   <li key={hoodie?.id}>
                     <h5>
                       {hoodie?.name} (${hoodie?.price})
                     </h5>
+                    <img src={hoodie?.image}></img>
                   </li>
                 );
               })
             : "Cart is Empty"}
         </ol>
+        <h1>Your Cart Order Total is ${total}</h1>
+        <button className="button-large">Place Order</button>
       </div>
     );
   }
