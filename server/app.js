@@ -9,6 +9,7 @@ app.use("/api/auth", require("./api/auth"));
 app.use("/api/image", require("./api/image"));
 app.use("/api/hoodies", require("./api/hoodies"));
 app.use("/api/orders", require("./api/orders"));
+app.use("/api/payment", require("./api/stripe"));
 
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../static/index.html"))

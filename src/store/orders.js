@@ -31,6 +31,7 @@ export const createOrder = (navigate) => {
       },
     });
     dispatch({ type: "CREATE_ORDER", order: response.data });
+    navigate("/orders");
   };
 };
 
