@@ -11,6 +11,9 @@ import CreateHoodie from "./CreateHoodie";
 import Closet from "./Closet";
 import FAQ from "./FAQ";
 import Cart from "./Cart";
+import Checkout from "./Checkout";
+import PaymentCompletion from "./PaymentCompletion";
+import Payment from "./Payment";
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -26,6 +29,7 @@ const App = () => {
   }, [auth]);
 
   console.log(auth.id);
+
   return (
     <div>
       <div>
@@ -36,11 +40,14 @@ const App = () => {
         <Route path="/login" element={<Home />} />
         <Route path="/register" element={<Home />} />
         <Route path="/create" element={<CreateHoodie />} />
-        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/closet" element={<Closet />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment-completion" element={<PaymentCompletion />} />
       </Routes>
     </div>
   );

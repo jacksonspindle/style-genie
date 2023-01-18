@@ -7,11 +7,13 @@ import {
   removeCart,
   deleteCart,
   getCloset,
+  createOrder,
 } from "../store";
 
 const Cart = () => {
   const { cart, hoodies } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const orderButton = document.getElementById("orderButton");
   //   cart.lineItems.map((lineItem) => {
   //     return;
@@ -83,7 +85,14 @@ const Cart = () => {
             : "Cart is Empty"}
         </ol>
         <h1>Your Cart Order Total is ${total}</h1>
-        <button className="button-large">Place Order</button>
+        <button
+          className="button-large"
+          onClick={() => {
+            dispatch(createOrder(navigate));
+          }}
+        >
+          Place Order
+        </button>
       </div>
     );
   }
