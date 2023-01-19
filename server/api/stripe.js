@@ -30,14 +30,25 @@ app.get("/config", (req, res) => {
 
 app.post("/create-payment-intent", async (req, res) => {
   try {
+    console.log(req);
+    console.log("this is a payment request");
+    const {
+      metadata: { orderDetails },
+      amount,
+    } = req.body;
+
+    console.log(JSON.stringify(orderDetails));
+
     const paymentIntent = await stripe.paymentIntents.create({
-      currency: "eur",
-      amount: 1999,
+      currency: "usd",
+      amount: amount,
       automatic_payment_methods: {
         enabled: true,
       },
+      //   metadata: { items: "cart.lineItems", total: 101 },
+      metadata: orderDetails,
     });
-
+    console.log(amount);
     res.send({ clientSecret: paymentIntent.client_secret });
   } catch (ex) {
     console.log(ex);

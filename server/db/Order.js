@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, BOOLEAN, VIRTUAL } = require("sequelize");
+const { UUID, UUIDV4, BOOLEAN, VIRTUAL, DataTypes } = require("sequelize");
 const conn = require("./conn");
 
 const Order = conn.define("order", {
@@ -24,6 +24,9 @@ const Order = conn.define("order", {
         total += i.totalPrice;
       }
     },
+  },
+  items: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
 });
 

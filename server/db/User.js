@@ -153,7 +153,7 @@ User.prototype.getCart = async function () {
 };
 
 User.prototype.getOrders = async function () {
-  let orders = await conn.models.orders.findAll({
+  let orders = await conn.models.order.findAll({
     where: {
       userId: this.id,
       isCart: false,
@@ -165,6 +165,7 @@ User.prototype.getOrders = async function () {
       },
     ],
   });
+  console.log(orders);
   return orders;
 };
 
