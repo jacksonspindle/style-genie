@@ -14,6 +14,7 @@ import Cart from "./Cart";
 import Checkout from "./Checkout";
 import PaymentCompletion from "./PaymentCompletion";
 import Payment from "./Payment";
+import Orders from "./Orders";
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-completion" element={<PaymentCompletion />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </div>
   );

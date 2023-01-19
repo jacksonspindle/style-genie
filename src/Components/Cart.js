@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   fetchCart,
   addCart,
@@ -87,12 +88,14 @@ const Cart = () => {
         <h1>Your Cart Order Total is ${total}</h1>
         <button
           className="button-large"
-          onClick={() => {
-            dispatch(createOrder(navigate));
-          }}
+          //   onClick={() => {
+          //     dispatch(createOrder(navigate));
+          //   }}
+          //   navigate('/payment')
         >
           Place Order
         </button>
+        <Link to="/payment">Place Order</Link>
       </div>
     );
   }

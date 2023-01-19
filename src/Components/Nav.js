@@ -54,7 +54,7 @@ const Nav = () => {
           <Link to="/closet" name="closet" onClick={handleMenuClick}>
             Closet
           </Link>
-          <Link to="/closet" name="orders" onClick={handleMenuClick}>
+          <Link to="/orders" name="orders" onClick={handleMenuClick}>
             Orders
           </Link>
           <Link to="/cart" name="cart" onClick={handleMenuClick}>
