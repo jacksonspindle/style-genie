@@ -148,7 +148,6 @@ User.prototype.getCart = async function () {
       },
     ],
   });
-  console.log(conn);
   return cart;
 };
 
@@ -165,14 +164,11 @@ User.prototype.getOrders = async function () {
       },
     ],
   });
-  console.log(orders);
   return orders;
 };
 
 User.prototype.addToCart = async function ({ garment, quantity }) {
   const cart = await this.getCart();
-  console.log(cart.lineItems);
-  console.log("Garment ID", garment.id);
   let lineItem = cart.lineItems.find((lineItem) => {
     return lineItem.garmentId === garment.id;
   });
@@ -225,7 +221,6 @@ User.addHook("beforeSave", async (user) => {
 });
 
 User.findByToken = async function (token) {
-  console.log(token);
   try {
     const { id } = jwt.verify(token, process.env.JWT);
     const user = await this.findByPk(id);

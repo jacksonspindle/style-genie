@@ -31,7 +31,6 @@ const LineItem = conn.define("lineItem", {
     type: VIRTUAL,
     get() {
       return this.quantity * this.hoodie.price;
-      // console.log(this);
     },
   },
 });

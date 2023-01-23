@@ -15,21 +15,6 @@ const Closet = (props) => {
     dispatch(getCloset());
   }, []);
 
-  //   const putInCart = (garment) => {
-  //     if (auth.id) {
-  //       const garment = {
-  //         productId: "",
-  //         userId: auth.id,
-  //         name: props.prompt,
-  //         bodyColor: props.color,
-  //         // image: props.image.replace("data:image/png;base64,", ""),
-  //       };
-  //       console.log(garment);
-  //       dispatch(addCart(garment));
-  //       alert("added to cart!");
-  //     }
-  //   };
-
   console.log({ hoodies: hoodies, auth: auth });
   return (
     <div>
@@ -50,14 +35,6 @@ const Closet = (props) => {
                 <button
                   onClick={() => {
                     if (auth.id) {
-                      //   const garment = {
-                      //     hoodieId: hoodie.id,
-                      //     userId: auth.id,
-                      //     name: props.prompt,
-                      //     bodyColor: props.color,
-                      //     // image: props.image.replace("data:image/png;base64,", ""),
-                      //   };
-                      //   console.log(garment);
                       dispatch(addCart(hoodie));
                       alert("added to cart!");
                     }

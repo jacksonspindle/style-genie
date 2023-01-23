@@ -19,15 +19,10 @@ const Checkout = () => {
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  console.log(cart);
-  //   console.log(cart.lineItems.map((item) => item.id));
-
-  //   const order = orders.find(order => order.id )
 
   useEffect(() => {
     dispatch(fetchOrders());
     dispatch(fetchCart());
-    console.log("test");
   }, []);
 
   useEffect(() => {
@@ -35,8 +30,6 @@ const Checkout = () => {
   }, [orders]);
 
   const handleSubmit = async (e) => {
-    console.log(elements);
-
     e.preventDefault();
     if (!stripe || !elements) {
       return;
@@ -50,30 +43,8 @@ const Checkout = () => {
       confirmParams: {
         return_url: `${window.location.origin}/#/payment-completion`,
       },
-      //   metadata: { orderDetails },
-      //   amount: 100,
-      //   redirect: "if_required",
+      direct: "if_required",
     });
-
-    // const { error, paymentIntent } = axios
-    //   .post("/create-payment-intent", {
-    //     amount: 100,
-    //     orderDetails,
-    //   })
-    //   .then((response) => {
-    //     const { clientSecret } = response.data;
-    //     stripe.confirmPayment(clientSecret, {
-    //       elements,
-    //       confirmParams: {
-    //         return_url: `${window.location.origin}/#/payment-completion`,
-    //       },
-    //       metadata: { orderDetails },
-    //       amount: 100,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
 
     if (error) {
       setMessage(error.message);
@@ -90,10 +61,6 @@ const Checkout = () => {
   useEffect(() => {
     dispatch(fetchCart());
   }, []);
-
-  //   useEffect(() => {
-  //     dispatch(fetchGarments());
-  //   }, []);
 
   const addOrder = () => {
     const order = {

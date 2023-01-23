@@ -24,36 +24,14 @@ const Payment = (props) => {
 
       setStripePromise(loadStripe(publishableKey));
     });
-
-    // const response = axios.get("./api/payment/config").then(async (r) => {
-    //   console.log(r);
-    //   const { publishableKey } = await r.json();
-
-    //   console.log(publishableKey);
-    //   console.log("test");
-    //   return publishableKey;
-    // });
-    // console.log(response);
   }, []);
 
-  //   console.log(cart);
-
-  //   const removeImageKeys = (obj) => {
-  //     const keys = Object.keys(obj);
-  //     const filteredKeys = keys.filter((key) => key !== "image");
-  //     return filteredKeys.reduce((acc, key) => {
-  //       acc[key] = obj[key];
-  //       return acc;
-  //     }, {});
-  //   };
-
   const itemMetaData = cart.lineItems.map((order) => {
-    // const item = Object.assign({}, order.hoodie);
-    // console.log(item);
     delete order.hoodie.image;
     delete order.hoodie.createdAt;
     delete order.hoodie.updatedAt;
     delete order.hoodie.id;
+    delete order.hoodie.userId;
     delete order.hoodie.price;
     delete order.hoodie.size;
     delete order.updatedAt;
@@ -64,35 +42,19 @@ const Payment = (props) => {
     delete order.quantity;
     delete order.userId;
     delete order.userId;
-    delete order.totalPrice;
+    // delete order.totalPrice;
     delete order.hoodieId;
 
-    // console.log(order);
     return order;
   });
 
   const metadata = Object.assign({}, itemMetaData);
-  console.log(metadata);
 
-  // const itemMetaData = { ...cart, ...obj2, ...obj3 };
-  //   const cartDetails = removeImageKeys(cart);
-  //   console.log(cartDetails);
-  const orderDetails = { items: JSON.stringify(metadata), total: "100" };
-  // const orderDetails = "test order details";
-  const amount = 100;
-  //   useEffect(() => {
-  //     fetch("/api/payment/create-payment-intent", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         metadata: orderDetails,
-  //         amount: amount,
-  //       }),
-  //     }).then(async (r) => {
-  //       const { clientSecret } = await r.json();
-  //       console.log(clientSecret);
-  //       setClientSecret(clientSecret);
-  //     });
-  //   }, []);
+  const orderDetails = {
+    items: JSON.stringify(metadata),
+    total: itemMetaData.reduce((acc, curr) => acc + curr.totalPrice, 0) * 100,
+  };
+  const amount = orderDetails.total;
 
   useEffect(() => {
     axios

@@ -43,7 +43,6 @@ app.post("/cart", async (req, res, next) => {
     );
   } catch (ex) {
     next(ex);
-    // console.log(res);
   }
 });
 
