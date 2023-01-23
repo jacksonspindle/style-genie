@@ -5,7 +5,6 @@ import { useLocation, Link, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import { Canvas } from "@react-three/fiber";
-// import Hoodie from "./HoodieOriginal";
 import { OrbitControls } from "@react-three/drei";
 import Shoe from "./Shoe";
 import Hoodie from "./Hoodie";

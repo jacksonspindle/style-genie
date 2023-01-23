@@ -1,4 +1,4 @@
-const e = require("express");
+// const e = require("express");
 const express = require("express");
 const app = express.Router();
 const { resolve } = require("path");
@@ -59,11 +59,3 @@ app.post("/create-payment-intent", async (req, res) => {
     });
   }
 });
-
-// app.get("/payment-completion", (req, res, next) => {
-//   try {
-//     res.send(req);
-//   } catch (ex) {
-//     next(ex);
-//   }
-// });

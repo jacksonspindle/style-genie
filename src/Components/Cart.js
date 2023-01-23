@@ -16,9 +16,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const orderButton = document.getElementById("orderButton");
-  //   cart.lineItems.map((lineItem) => {
-  //     return;
-  //   });
 
   useEffect(() => {
     dispatch(fetchCart());
@@ -47,13 +44,6 @@ const Cart = () => {
       dispatch(removeCart(garment, quantity));
     }
   };
-
-  //   const data = [
-  //     { key1: 1, key2: 2 },
-  //     { key1: 3, key2: 4 },
-  //     { key1: 5, key2: 6 },
-  //   ];
-  //   const key = "key1";
 
   const total = cart.lineItems.reduce((acc, curr) => {
     return acc + curr["totalPrice"];
@@ -86,15 +76,7 @@ const Cart = () => {
             : "Cart is Empty"}
         </ol>
         <h1>Your Cart Order Total is ${total}</h1>
-        <button
-          className="button-large"
-          //   onClick={() => {
-          //     dispatch(createOrder(navigate));
-          //   }}
-          //   navigate('/payment')
-        >
-          Place Order
-        </button>
+        <button className="button-large">Place Order</button>
         <Link to="/payment">Place Order</Link>
       </div>
     );

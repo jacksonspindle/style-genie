@@ -168,9 +168,6 @@ const CreateHoodie = () => {
         <div>
           <button onClick={addToCollection}>Save Design</button>
         </div>
-        {/* <div>
-          <button onClick={putInCart}>Add To Cart</button>
-        </div> */}
       </div>
     </div>
   );
