@@ -50,10 +50,11 @@ const Cart = () => {
   }, 0);
 
   if (cart) {
+    console.log(cart);
     return (
       <div className="cart-container">
         <h1>Cart - {cart.lineItems.length ? `Total: $${total}` : ""}</h1>
-        <ol>
+        <ol className="cart-items">
           {cart.lineItems.length
             ? cart.lineItems.map((lineItem) => {
                 console.log("lineItemPrice: ", lineItem.totalPrice);
@@ -61,13 +62,29 @@ const Cart = () => {
                 const hoodie = hoodies.find(
                   (hoodie) => hoodie.id === lineItem.hoodieId
                 );
-                console.log(hoodies);
-                console.log(cart.lineItems[0].quantity);
-                console.log(cart.lineItems);
+                {
+                  /* console.log(hoodies); */
+                }
+                {
+                  /* console.log(cart.lineItems[0].quantity); */
+                }
+                {
+                  /* console.log(cart.lineItems); */
+                }
                 return (
                   <li key={hoodie?.id}>
                     <h5>
-                      {hoodie?.name} (${hoodie?.price})
+                      {hoodie?.name}
+                      <br></br>
+                      <span className="line-item-info">${hoodie?.price}</span>
+                      <br></br>
+                      <span className="line-item-info">
+                        Quantity: {lineItem.quantity}
+                      </span>
+                      <br></br>
+                      <span className="line-item-info">
+                        Size: {lineItem.size}
+                      </span>
                     </h5>
                     <img src={hoodie?.image}></img>
                   </li>
@@ -75,9 +92,13 @@ const Cart = () => {
               })
             : "Cart is Empty"}
         </ol>
-        <h1>Your Cart Order Total is ${total}</h1>
-        <button className="button-large">Place Order</button>
-        <Link to="/payment">Place Order</Link>
+        <h1 className="order-total-message">
+          Your Cart Order Total is ${total}
+        </h1>
+        {/* <button className="button-large">Place Order</button> */}
+        <Link to="/payment" className="button-large">
+          Check Out
+        </Link>
       </div>
     );
   }

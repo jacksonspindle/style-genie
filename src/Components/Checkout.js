@@ -23,6 +23,7 @@ const Checkout = () => {
   useEffect(() => {
     dispatch(fetchOrders());
     dispatch(fetchCart());
+    dispatch(getCloset());
   }, []);
 
   useEffect(() => {
@@ -72,7 +73,7 @@ const Checkout = () => {
   return cart ? (
     <div>
       Checkout
-      {orders.map((order) => {
+      {/* {orders.map((order) => {
         return (
           <li key={order.id}>
             {order.id}
@@ -88,17 +89,33 @@ const Checkout = () => {
             </p>
           </li>
         );
-      })}
-      <form id={"payment-form"} onSubmit={handleSubmit}>
-        <h1>Payment Form</h1>
-        <PaymentElement />
-        <button disabled={isProcessing} onClick={addOrder}>
-          <span id="button-text">
-            {isProcessing ? "Processing..." : "Pay now"}
-          </span>
-        </button>
-        {message && <div id="payment-message">{message}</div>}
-      </form>
+      })} */}
+      {/* {cart.lineItems.map((item) => {
+        console.log(cart);
+        const cartImages = hoodies.find((hoodie) => hoodie.name === cart);
+        return (
+          <li key={item.hoodie.id}>
+            {item.hoodie.name}
+            <img src={item.hoodie.image}></img>
+          </li>
+        );
+      })} */}
+      <div className="payment-form-container">
+        <form id={"payment-form"} onSubmit={handleSubmit}>
+          <h1>Payment Form</h1>
+          <PaymentElement />
+          <button
+            className="button-large"
+            disabled={isProcessing}
+            onClick={addOrder}
+          >
+            <span id="button-text">
+              {isProcessing ? "Processing..." : "Pay now"}
+            </span>
+          </button>
+          {message && <div id="payment-message">{message}</div>}
+        </form>
+      </div>
     </div>
   ) : (
     ""

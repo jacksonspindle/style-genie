@@ -1,0 +1,22 @@
+.payment-form-container{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+#payment-form{
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    
+}
+
+#payment-form button {
+    margin-bottom: 2rem;
+}

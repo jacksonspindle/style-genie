@@ -74,7 +74,6 @@ const Payment = (props) => {
 
   return (
     <div>
-      Payment
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <Checkout />
