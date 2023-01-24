@@ -191,8 +191,9 @@ User.prototype.removeFromCart = async function ({
 }) {
   const cart = await this.getCart();
   const lineItem = cart.lineItems.find((lineItem) => {
-    return lineItem.garmentId === garment.id;
+    return lineItem.hoodieId === garment.id;
   });
+  console.log(cart.lineItems);
   lineItem.quantity = lineItem.quantity - quantityToRemove;
   if (lineItem.quantity > 0) {
     await lineItem.save();

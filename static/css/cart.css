@@ -42,3 +42,12 @@ list-style-type: none;
 .order-total-message{
     font-size: 25px;
 }
+
+.removeButton{
+    background-color: red;
+    font-size: 11px;
+    border-radius: .2rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 3px;
+}

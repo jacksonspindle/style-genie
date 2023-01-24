@@ -26,6 +26,7 @@ const Cart = () => {
   }, [cart]);
 
   const deleteFromCart = (garment, quantityToRemove) => {
+    console.log(quantityToRemove);
     dispatch(deleteCart(garment, quantityToRemove));
   };
 
@@ -53,7 +54,7 @@ const Cart = () => {
     console.log(cart);
     return (
       <div className="cart-container">
-        <h1>Cart - {cart.lineItems.length ? `Total: $${total}` : ""}</h1>
+        <h1>Cart</h1>
         <ol className="cart-items">
           {cart.lineItems.length
             ? cart.lineItems.map((lineItem) => {
@@ -85,7 +86,32 @@ const Cart = () => {
                       <span className="line-item-info">
                         Size: {lineItem.size}
                       </span>
+                      <br></br>
+                      <button
+                        className="removeButton"
+                        onClick={() => {
+                          dispatch(deleteCart(hoodie, lineItem.quantity));
+                        }}
+                      >
+                        remove
+                      </button>
+                      <label>Quantity</label>
+                      <select
+                        name="Quantity"
+                        value={lineItem.quantity}
+                        onChange={(e) => {
+                          console.log(lineItem.quantity, "->", e.target.value);
+                          changeQuantity(
+                            hoodie,
+                            lineItem.quantity,
+                            e.target.value
+                          );
+                        }}
+                      >
+                        {createOptions()}
+                      </select>
                     </h5>
+
                     <img src={hoodie?.image}></img>
                   </li>
                 );

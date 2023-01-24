@@ -69,16 +69,24 @@ export const removeCart = (garment, quantity) => {
 };
 
 export const deleteCart = (garment, quantityToRemove) => {
+  console.log(quantityToRemove);
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
-    const response = await axios.put("/api/orders/cart", {
-      headers: {
-        authorization: token,
-      },
-      garment,
-      quantityToRemove,
-    });
-    dispatch({ type: "DELETE_CART", cart: response.data });
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await axios.put("/api/orders/cart", {
+        headers: {
+          authorization: token,
+        },
+        garment,
+        quantityToRemove,
+      });
+      dispatch({ type: "DELETE_CART", cart: response.data });
+      console.log("it worked!");
+    } catch (ex) {
+      console.log(ex);
+      console.log("its broken...");
+      console.log(garment);
+    }
   };
 };
 
