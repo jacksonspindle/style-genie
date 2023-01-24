@@ -1,10 +1,61 @@
 .closet-container{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding:0 10rem 0 10rem;
+    justify-content: right;
+    /* gap: 4rem; */
+    flex-direction: space-between;
+    /* padding:0 10rem 0 10rem; */
+    flex-wrap: wrap;
 }
 
 .closet-container h1 {
     font-size: 15px;
+}
+
+.closet {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.closet-image {
+    max-width: 200px;
+    transition: all .2s ease-in-out ;
+}
+
+
+
+.closet-image:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.item-detail-menu{
+    position: absolute;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 1rem;
+    width: 80%;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin-top: 30%;
+    border: 2px solid black;
+    padding: 1rem;
+    gap: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 1rem;
+}
+
+.item-detail-menu img {
+    max-width: 400px;
+}
+
+.preview-canvas{
+    height: 400px;
+    width: 100%;
+    /* background-color: red; */
+    z-index: 5;
 }
