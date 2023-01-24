@@ -5,6 +5,7 @@
     flex-direction: space-between;
     /* padding:0 10rem 0 10rem; */
     flex-wrap: wrap;
+    
 }
 
 .closet-container h1 {
@@ -17,14 +18,13 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 2rem;
 }
 
 .closet-image {
     max-width: 200px;
     transition: all .2s ease-in-out ;
 }
-
-
 
 .closet-image:hover{
     transform: scale(1.2);
@@ -40,7 +40,7 @@
     align-items: center;
     flex-direction: column;
     display: flex;
-    margin-top: 30%;
+    /* margin-top: 60%; */
     border: 2px solid black;
     padding: 1rem;
     gap: 1rem;
@@ -58,4 +58,15 @@
     width: 100%;
     /* background-color: red; */
     z-index: 5;
+}
+
+.empty-closet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.empty-closet a {
+    font-size: 15px;
 }

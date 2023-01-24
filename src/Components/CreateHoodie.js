@@ -70,7 +70,16 @@ const CreateHoodie = () => {
         />
       );
     } else if (!image && loading) {
-      return "";
+      return (
+        <div className="loading-animation">
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      );
     } else {
       return <img src={image} />;
     }
@@ -93,6 +102,11 @@ const CreateHoodie = () => {
       dispatch(addToCloset(hoodie));
       // console.log(hoodie);
     }
+  };
+
+  const resetHoodie = () => {
+    setResult("");
+    setImage("");
   };
 
   useEffect(() => {
@@ -163,10 +177,17 @@ const CreateHoodie = () => {
           </button>
           {displayImage()}
 
-          <button onClick={addToHoodie}>Add to Hoodie</button>
-        </div>
-        <div>
-          <button onClick={addToCollection}>Save Design</button>
+          <button className="button-small" onClick={addToHoodie}>
+            Add to Hoodie
+          </button>
+          <div className="create-hoodie-button-container">
+            <button className="button-small" onClick={addToCollection}>
+              Save Design
+            </button>
+            <button className="button-small" onClick={resetHoodie}>
+              Reset Hoodie
+            </button>
+          </div>
         </div>
       </div>
     </div>

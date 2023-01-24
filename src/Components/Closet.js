@@ -5,6 +5,7 @@ import Hoodie from "./Hoodie";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { addCart } from "../store";
+import { Link } from "react-router-dom";
 
 // const ItemDetailMenu = (props) => {
 //   return (
@@ -38,13 +39,14 @@ const Closet = (props) => {
   console.log(hovered);
 
   console.log({ hoodies: hoodies, auth: auth });
-  return (
-    <div className="closet">
-      {hoodies.map((hoodie, i) => {
-        return (
-          <div key={hoodie.id} className={"closet-container"}>
-            {/* <h1>{hoodie.name}</h1> */}
-            {/* {hovered ? (
+  if (hoodies.length > 0) {
+    return (
+      <div className="closet">
+        {hoodies.map((hoodie, i) => {
+          return (
+            <div key={hoodie.id} className={"closet-container"}>
+              {/* <h1>{hoodie.name}</h1> */}
+              {/* {hovered ? (
               <Canvas onMouseLeave={() => setHovered(false)}>
                 <Hoodie image={hoodie.image} />
               </Canvas>
@@ -65,53 +67,63 @@ const Closet = (props) => {
               </div>
             )} */}
 
-            <img
-              className={"closet-image"}
-              onClick={() => {
-                console.log(selectedItem.image);
-                setHovered(true);
-                setSelectedItem(hoodie);
-              }}
-              // onMouseLeave={() => setHovered(true)}
-              src={hoodie.image}
-            ></img>
-          </div>
-        );
-      })}
-      {hovered ? (
-        <div
-          className="item-detail-menu"
-          onMouseLeave={() => setHovered(false)}
-        >
-          <div>{selectedItem.name}</div>
-          <div className="preview-canvas">
-            <Canvas>
-              <Hoodie image={selectedItem.image} />
-              <OrbitControls minDistance={9} maxDistance={12} />
-            </Canvas>
-          </div>
-          {/* <img
-            // onMouseLeave={() => setHovered(false)}
-            src={selectedItem.image}
-          ></img> */}
-          <button
-            className="button-large"
-            onClick={() => {
-              console.log(selectedItem);
-              if (auth.id) {
-                dispatch(addCart(selectedItem));
-                alert("added to cart!");
-              }
-            }}
+              <img
+                className={"closet-image"}
+                onClick={() => {
+                  console.log(selectedItem.image);
+                  setHovered(true);
+                  setSelectedItem(hoodie);
+                }}
+                // onMouseLeave={() => setHovered(true)}
+                src={hoodie.image}
+              ></img>
+            </div>
+          );
+        })}
+        {hovered ? (
+          <div
+            className="item-detail-menu"
+            onMouseLeave={() => setHovered(false)}
           >
-            Add To Cart
-          </button>
+            <div>{selectedItem.name}</div>
+            <div className="preview-canvas">
+              <Canvas>
+                <Hoodie image={selectedItem.image} />
+                <OrbitControls minDistance={9} maxDistance={12} />
+              </Canvas>
+            </div>
+
+            <button
+              className="button-large"
+              onClick={() => {
+                console.log(selectedItem);
+                if (auth.id) {
+                  dispatch(addCart(selectedItem));
+                  alert("added to cart!");
+                }
+              }}
+            >
+              Add To Cart
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div className="empty-closet">
+          Your closet is empty
+          <br></br>
+          <Link className="button-large" to="/create">
+            Design Hoodies
+          </Link>
         </div>
-      ) : (
-        ""
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 };
 
 export default Closet;
