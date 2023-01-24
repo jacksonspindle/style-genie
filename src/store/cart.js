@@ -40,7 +40,6 @@ export const addCart = (garment, quantity = 1) => {
         quantity,
         hoodieId: garment.id,
       });
-      console.log("test");
       dispatch({
         type: "ADD_CART",
         cart: response.data,
