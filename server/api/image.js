@@ -5,12 +5,14 @@ const app = express.Router();
 
 module.exports = app;
 
+const env = require("dotenv").config({ path: "./.env" });
+
 app.post("/", async (req, res, next) => {
   try {
     const { prompt } = req.body;
     console.log(prompt);
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: process.env.DALLE_API_KEY,
     });
 
     const openai = new OpenAIApi(configuration);
