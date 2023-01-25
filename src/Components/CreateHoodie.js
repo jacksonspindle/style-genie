@@ -171,6 +171,7 @@ const CreateHoodie = () => {
             placeholder={"type any prompt..."}
             onChange={(e) => setPrompt(e.target.value)}
             value={prompt}
+            className="dalle-input"
           ></input>
           <button className="button-small" onClick={getImage}>
             Generate Image

@@ -18,6 +18,7 @@ const Hoodie = ({ ...props }) => {
     bodyTexture.repeat.set(1, 1);
     bodyTexture.anisotropy = 16;
     // bodyTexture.image.height = 2100;
+    bodyTexture.flipY = false;
   }
 
   const photoMaterial = <meshBasicMaterial map={bodyTexture} />;

@@ -75,3 +75,12 @@
     justify-content: center;
     justify-content: space-between;
 }
+
+.dalle-input {
+    /* border-radius: 3rem; */
+    /* all: initial; */
+    border: 1px solid black;
+    height: 50px;
+
+
+}
